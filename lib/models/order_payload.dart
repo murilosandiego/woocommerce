@@ -393,7 +393,7 @@ class LineItems {
 class ShippingLines {
   String methodId;
   String methodTitle;
-  double total;
+  String total;
 
   ShippingLines({this.methodId, this.methodTitle, this.total});
 
