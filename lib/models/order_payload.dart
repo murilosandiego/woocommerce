@@ -92,8 +92,9 @@ class WooOrderPayload {
         couponLines.add(new WooOrderPayloadCouponLines.fromJson(v));
       });
     }
-    billing =
-        json['billing'] != null ? new WooOrderPayloadBilling.fromJson(json['billing']) : null;
+    billing = json['billing'] != null
+        ? new WooOrderPayloadBilling.fromJson(json['billing'])
+        : null;
     shipping = json['shipping'] != null
         ? new WooOrderPayloadShipping.fromJson(json['shipping'])
         : null;
@@ -145,7 +146,9 @@ class WooOrderPayload {
     }
     return data;
   }
-  @override toString() => this.toJson().toString();
+
+  @override
+  toString() => this.toJson().toString();
 }
 
 class WooOrderPayloadMetaData {
@@ -362,7 +365,7 @@ class LineItems {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['product_id'] = this.productId;
-    if (this.name !=null){
+    if (this.name != null) {
       data['name'] = this.name;
     }
 
@@ -372,23 +375,25 @@ class LineItems {
     if (this.taxClass != null) {
       data['tax_class'] = this.taxClass;
     }
-    if (this.subtotal != null){
+    if (this.subtotal != null) {
       data['subtotal'] = this.subtotal;
     }
-    if (this.total != null){
+    if (this.total != null) {
       data['total'] = this.total;
     }
 
     data['quantity'] = this.quantity;
     return data;
   }
-  @override toString() => this.toJson().toString();
+
+  @override
+  toString() => this.toJson().toString();
 }
 
 class ShippingLines {
   String methodId;
   String methodTitle;
-  String total;
+  double total;
 
   ShippingLines({this.methodId, this.methodTitle, this.total});
 
