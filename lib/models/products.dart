@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 /*
  * BSD 3-Clause License
 
@@ -205,9 +207,12 @@ class WooProduct {
         categories = (json['categories'] as List)
             .map((i) => WooProductCategory.fromJson(i))
             .toList(),
-        tags = (json['tags'] as List).map((i) => WooProductItemTag.fromJson(i)).toList(),
-        images =
-            (json['images'] as List).map((i) => WooProductImage.fromJson(i)).toList(),
+        tags = (json['tags'] as List)
+            .map((i) => WooProductItemTag.fromJson(i))
+            .toList(),
+        images = (json['images'] as List)
+            .map((i) => WooProductImage.fromJson(i))
+            .toList(),
         attributes = (json['attributes'] as List)
             .map((i) => WooProductItemAttribute.fromJson(i))
             .toList(),
@@ -221,7 +226,70 @@ class WooProduct {
             .map((i) => MetaData.fromJson(i))
             .toList();
 
-  @override toString() => "{id: $id}, {name: $name}, {price: $price}, {status: $status}";
+  @override
+  toString() => "{id: $id}, {name: $name}, {price: $price}, {status: $status}";
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'name': name,
+      'slug': slug,
+      'permalink': permalink,
+      'type': type,
+      'status': status,
+      'featured': featured,
+      'catalogVisibility': catalogVisibility,
+      'description': description,
+      'shortDescription': shortDescription,
+      'sku': sku,
+      'price': price,
+      'regularPrice': regularPrice,
+      'salePrice': salePrice,
+      'priceHtml': priceHtml,
+      'onSale': onSale,
+      'purchasable': purchasable,
+      'totalSales': totalSales,
+      'virtual': virtual,
+      'downloadable': downloadable,
+      'downloads': downloads?.map((x) => x?.toJson())?.toList(),
+      'downloadLimit': downloadLimit,
+      'downloadExpiry': downloadExpiry,
+      'externalUrl': externalUrl,
+      'buttonText': buttonText,
+      'taxStatus': taxStatus,
+      'taxClass': taxClass,
+      'manageStock': manageStock,
+      'stockQuantity': stockQuantity,
+      'stockStatus': stockStatus,
+      'backorders': backorders,
+      'backordersAllowed': backordersAllowed,
+      'backordered': backordered,
+      'soldIndividually': soldIndividually,
+      'weight': weight,
+      'dimensions': dimensions?.toJson(),
+      'shippingRequired': shippingRequired,
+      'shippingTaxable': shippingTaxable,
+      'shippingClass': shippingClass,
+      'shippingClassId': shippingClassId,
+      'reviewsAllowed': reviewsAllowed,
+      'averageRating': averageRating,
+      'ratingCount': ratingCount,
+      'relatedIds': relatedIds,
+      'upsellIds': upsellIds,
+      'crossSellIds': crossSellIds,
+      'parentId': parentId,
+      'purchaseNote': purchaseNote,
+      'categories': categories?.map((x) => x?.toJson())?.toList(),
+      'tags': tags?.map((x) => x?.toJson())?.toList(),
+      'images': images?.map((x) => x?.toJson())?.toList(),
+      'attributes': attributes?.map((x) => x?.toJson())?.toList(),
+      'defaultAttributes': defaultAttributes?.map((x) => x?.toJson())?.toList(),
+      'variations': variations,
+      'groupedProducts': groupedProducts,
+      'menuOrder': menuOrder,
+      'metaData': metaData?.map((x) => x?.toJson())?.toList(),
+    };
+  }
 }
 
 class WooProductItemTag {
@@ -237,7 +305,8 @@ class WooProductItemTag {
         slug = json['slug'];
 
   Map<String, dynamic> toJson() => {'id': id, 'name': name, 'slug': slug};
-  @override toString() => 'Tag: $name';
+  @override
+  toString() => 'Tag: $name';
 }
 
 class MetaData {
@@ -292,6 +361,19 @@ class WooProductImage {
         dateModifiedGMT = DateTime.parse(json['date_modified_gmt']),
         dateModified = DateTime.parse(json['date_modified']),
         dateCreatedGMT = DateTime.parse(json['date_created_gmt']);
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'dateCreated': dateCreated?.millisecondsSinceEpoch,
+      'dateCreatedGMT': dateCreatedGMT?.millisecondsSinceEpoch,
+      'dateModified': dateModified?.millisecondsSinceEpoch,
+      'dateModifiedGMT': dateModifiedGMT?.millisecondsSinceEpoch,
+      'src': src,
+      'name': name,
+      'alt': alt,
+    };
+  }
 }
 
 /**
@@ -340,8 +422,8 @@ class WooProductItemAttribute {
   final bool variation;
   final List<String> options;
 
-  WooProductItemAttribute(this.id, this.name, this.position, this.visible, this.variation,
-      this.options);
+  WooProductItemAttribute(this.id, this.name, this.position, this.visible,
+      this.variation, this.options);
 
   WooProductItemAttribute.fromJson(Map<String, dynamic> json)
       : id = json['id'],
