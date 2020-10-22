@@ -364,10 +364,10 @@ class WooProductImage {
   Map<String, dynamic> toJson() {
     return {
       'id': id,
-      'dateCreated': dateCreated?.millisecondsSinceEpoch,
-      'dateCreatedGMT': dateCreatedGMT?.millisecondsSinceEpoch,
-      'dateModified': dateModified?.millisecondsSinceEpoch,
-      'dateModifiedGMT': dateModifiedGMT?.millisecondsSinceEpoch,
+      'date_created': dateCreated?.millisecondsSinceEpoch,
+      'date_modified_gmt': dateCreatedGMT?.millisecondsSinceEpoch,
+      'date_modified': dateModified?.millisecondsSinceEpoch,
+      'date_created_gmt': dateModifiedGMT?.millisecondsSinceEpoch,
       'src': src,
       'name': name,
       'alt': alt,
