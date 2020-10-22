@@ -285,6 +285,7 @@ class WooProduct {
           defaultAttributes?.map((x) => x?.toJson())?.toList(),
       'variations': variations,
       'groupedProducts': groupedProducts,
+      "grouped_products": List<dynamic>.from(groupedProducts.map((x) => x)),
       'menuOrder': menuOrder,
       'metaData': metaData?.map((x) => x?.toJson())?.toList(),
     };
