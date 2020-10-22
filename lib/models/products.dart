@@ -226,6 +226,68 @@ class WooProduct {
 
   @override
   toString() => "{id: $id}, {name: $name}, {price: $price}, {status: $status}";
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'name': name,
+      'slug': slug,
+      'permalink': permalink,
+      'type': type,
+      'status': status,
+      'featured': featured,
+      'catalogVisibility': catalogVisibility,
+      'description': description,
+      'shortDescription': shortDescription,
+      'sku': sku,
+      'price': price,
+      'regularPrice': regularPrice,
+      'salePrice': salePrice,
+      'priceHtml': priceHtml,
+      'onSale': onSale,
+      'purchasable': purchasable,
+      'totalSales': totalSales,
+      'virtual': virtual,
+      'downloadable': downloadable,
+      'downloads': downloads?.map((x) => x?.toJson())?.toList(),
+      'downloadLimit': downloadLimit,
+      'downloadExpiry': downloadExpiry,
+      'externalUrl': externalUrl,
+      'buttonText': buttonText,
+      'taxStatus': taxStatus,
+      'taxClass': taxClass,
+      'manageStock': manageStock,
+      'stockQuantity': stockQuantity,
+      'stockStatus': stockStatus,
+      'backorders': backorders,
+      'backordersAllowed': backordersAllowed,
+      'backordered': backordered,
+      'soldIndividually': soldIndividually,
+      'weight': weight,
+      'dimensions': dimensions?.toJson(),
+      'shippingRequired': shippingRequired,
+      'shippingTaxable': shippingTaxable,
+      'shippingClass': shippingClass,
+      'shippingClassId': shippingClassId,
+      'reviewsAllowed': reviewsAllowed,
+      'averageRating': averageRating,
+      'ratingCount': ratingCount,
+      "related_ids": List<dynamic>.from(relatedIds.map((x) => x)),
+      "upsell_ids": List<dynamic>.from(upsellIds.map((x) => x)),
+      "cross_sell_ids": List<dynamic>.from(crossSellIds.map((x) => x)),
+      'parentId': parentId,
+      'purchaseNote': purchaseNote,
+      'categories': categories?.map((x) => x?.toJson())?.toList(),
+      'tags': tags?.map((x) => x?.toJson())?.toList(),
+      'images': images?.map((x) => x?.toJson())?.toList(),
+      'attributes': attributes?.map((x) => x?.toJson())?.toList(),
+      'defaultAttributes': defaultAttributes?.map((x) => x?.toJson())?.toList(),
+      'variations': variations,
+      'groupedProducts': groupedProducts,
+      'menuOrder': menuOrder,
+      'metaData': metaData?.map((x) => x?.toJson())?.toList(),
+    };
+  }
 }
 
 class WooProductItemTag {
@@ -297,6 +359,19 @@ class WooProductImage {
         dateModifiedGMT = DateTime.parse(json['date_modified_gmt']),
         dateModified = DateTime.parse(json['date_modified']),
         dateCreatedGMT = DateTime.parse(json['date_created_gmt']);
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'dateCreated': dateCreated?.millisecondsSinceEpoch,
+      'dateCreatedGMT': dateCreatedGMT?.millisecondsSinceEpoch,
+      'dateModified': dateModified?.millisecondsSinceEpoch,
+      'dateModifiedGMT': dateModifiedGMT?.millisecondsSinceEpoch,
+      'src': src,
+      'name': name,
+      'alt': alt,
+    };
+  }
 }
 
 /**
