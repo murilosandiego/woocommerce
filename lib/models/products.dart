@@ -197,9 +197,15 @@ class WooProduct {
         reviewsAllowed = json['reviews_allowed'],
         averageRating = json['average_rating'],
         ratingCount = json['rating_count'],
-        relatedIds = json['related_ids'].cast<int>(),
-        upsellIds = json['upsell_ids'].cast<int>(),
-        crossSellIds = json['cross_sell_ids'].cast<int>(),
+        relatedIds = json["related_ids"] == null
+            ? null
+            : List<int>.from(json["related_ids"].map((x) => x)),
+        upsellIds = json["upsell_ids"] == null
+            ? null
+            : List<dynamic>.from(json["upsell_ids"].map((x) => x)),
+        crossSellIds = json["cross_sell_ids"] == null
+            ? null
+            : List<dynamic>.from(json["cross_sell_ids"].map((x) => x)),
         parentId = json['parent_id'],
         purchaseNote = json['purchase_note'],
         categories = (json['categories'] as List)
