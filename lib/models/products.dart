@@ -199,7 +199,7 @@ class WooProduct {
         ratingCount = json['rating_count'],
         relatedIds = json["related_ids"] == null
             ? null
-            : List<int>.from(json["related_ids"].map((x) => x)),
+            : List<dynamic>.from(json["related_ids"].map((x) => x)),
         upsellIds = json["upsell_ids"] == null
             ? null
             : List<dynamic>.from(json["upsell_ids"].map((x) => x)),
