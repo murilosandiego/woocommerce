@@ -197,15 +197,9 @@ class WooProduct {
         reviewsAllowed = json['reviews_allowed'],
         averageRating = json['average_rating'],
         ratingCount = json['rating_count'],
-        relatedIds = json["related_ids"] == null
-            ? null
-            : List<dynamic>.from(json["related_ids"].map((x) => x)),
-        upsellIds = json["upsell_ids"] == null
-            ? null
-            : List<dynamic>.from(json["upsell_ids"].map((x) => x)),
-        crossSellIds = json["cross_sell_ids"] == null
-            ? null
-            : List<dynamic>.from(json["cross_sell_ids"].map((x) => x)),
+        relatedIds = json['related_ids'].cast<int>(),
+        upsellIds = json['upsell_ids'].cast<int>(),
+        crossSellIds = json['cross_sell_ids'].cast<int>(),
         parentId = json['parent_id'],
         purchaseNote = json['purchase_note'],
         categories = (json['categories'] as List)
@@ -229,67 +223,6 @@ class WooProduct {
         metaData = (json['meta_data'] as List)
             .map((i) => MetaData.fromJson(i))
             .toList();
-
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "name": name,
-        "slug": slug,
-        "permalink": permalink,
-        "type": type,
-        "status": status,
-        "featured": featured,
-        "catalog_visibility": catalogVisibility,
-        "description": description,
-        "short_description": shortDescription,
-        "sku": sku,
-        "price": price,
-        "regular_price": regularPrice,
-        "sale_price": salePrice,
-        "price_html": priceHtml,
-        "on_sale": onSale,
-        "purchasable": purchasable,
-        "total_sales": totalSales,
-        "virtual": virtual,
-        "downloadable": downloadable,
-        "downloads": List<dynamic>.from(downloads.map((x) => x)),
-        "download_limit": downloadLimit,
-        "download_expiry": downloadExpiry,
-        "external_url": externalUrl,
-        "button_text": buttonText,
-        "tax_status": taxStatus,
-        "tax_class": taxClass,
-        "manage_stock": manageStock,
-        "stock_quantity": stockQuantity,
-        "stock_status": stockStatus,
-        "backorders": backorders,
-        "backorders_allowed": backordersAllowed,
-        "backordered": backordered,
-        "sold_individually": soldIndividually,
-        "weight": weight,
-        "dimensions": dimensions.toJson(),
-        "shipping_required": shippingRequired,
-        "shipping_taxable": shippingTaxable,
-        "shipping_class": shippingClass,
-        "shipping_class_id": shippingClassId,
-        "reviews_allowed": reviewsAllowed,
-        "average_rating": averageRating,
-        "rating_count": ratingCount,
-        "related_ids": List<dynamic>.from(relatedIds.map((x) => x)),
-        "upsell_ids": List<dynamic>.from(upsellIds.map((x) => x)),
-        "cross_sell_ids": List<dynamic>.from(crossSellIds.map((x) => x)),
-        "parent_id": parentId,
-        "purchase_note": purchaseNote,
-        "categories": List<dynamic>.from(categories.map((x) => x.toJson())),
-        "tags": List<dynamic>.from(tags.map((x) => x)),
-        "images": List<dynamic>.from(images.map((x) => x.toJson())),
-        "attributes": List<dynamic>.from(attributes.map((x) => x)),
-        "default_attributes":
-            List<dynamic>.from(defaultAttributes.map((x) => x)),
-        "variations": List<dynamic>.from(variations.map((x) => x)),
-        "grouped_products": List<dynamic>.from(groupedProducts.map((x) => x)),
-        "menu_order": menuOrder,
-        "meta_data": List<dynamic>.from(metaData.map((x) => x.toJson())),
-      };
 
   @override
   toString() => "{id: $id}, {name: $name}, {price: $price}, {status: $status}";
@@ -364,19 +297,6 @@ class WooProductImage {
         dateModifiedGMT = DateTime.parse(json['date_modified_gmt']),
         dateModified = DateTime.parse(json['date_modified']),
         dateCreatedGMT = DateTime.parse(json['date_created_gmt']);
-
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'dateCreated': dateCreated?.millisecondsSinceEpoch,
-      'dateCreatedGMT': dateCreatedGMT?.millisecondsSinceEpoch,
-      'dateModified': dateModified?.millisecondsSinceEpoch,
-      'dateModifiedGMT': dateModifiedGMT?.millisecondsSinceEpoch,
-      'src': src,
-      'name': name,
-      'alt': alt,
-    };
-  }
 }
 
 /**
