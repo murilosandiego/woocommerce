@@ -281,7 +281,8 @@ class WooProduct {
       'tags': tags?.map((x) => x?.toJson())?.toList(),
       'images': images?.map((x) => x?.toJson())?.toList(),
       'attributes': attributes?.map((x) => x?.toJson())?.toList(),
-      'defaultAttributes': defaultAttributes?.map((x) => x?.toJson())?.toList(),
+      'default_attributes':
+          defaultAttributes?.map((x) => x?.toJson())?.toList(),
       'variations': variations,
       'groupedProducts': groupedProducts,
       'menuOrder': menuOrder,
