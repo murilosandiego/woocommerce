@@ -87,8 +87,9 @@ class WooCustomer {
         : null;
     isPayingCustomer = json['is_paying_customer'];
     avatarUrl = json['avatar_url'];
-    metaData =
-        (json['meta_data'] as List).map((i) => WooCustomerMetaData.fromJson(i)).toList();
+    metaData = (json['meta_data'] as List)
+        .map((i) => WooCustomerMetaData.fromJson(i))
+        .toList();
     links = json['_links'] != null ? new Links.fromJson(json['_links']) : null;
   }
 
@@ -126,7 +127,49 @@ class WooCustomer {
     }
     return data;
   }
-  @override toString() => this.toJson().toString();
+
+  @override
+  toString() => this.toJson().toString();
+
+  WooCustomer copyWith({
+    int id,
+    String dateCreated,
+    String dateCreatedGmt,
+    String dateModified,
+    String dateModifiedGmt,
+    String email,
+    String firstName,
+    String lastName,
+    String role,
+    String username,
+    String password,
+    Billing billing,
+    Shipping shipping,
+    bool isPayingCustomer,
+    String avatarUrl,
+    List<WooCustomerMetaData> metaData,
+    Links links,
+  }) {
+    return WooCustomer(
+      id: id ?? this.id,
+      dateCreated: dateCreated ?? this.dateCreated,
+      dateCreatedGmt: dateCreatedGmt ?? this.dateCreatedGmt,
+      dateModified: dateModified ?? this.dateModified,
+      dateModifiedGmt: dateModifiedGmt ?? this.dateModifiedGmt,
+      email: email ?? this.email,
+      firstName: firstName ?? this.firstName,
+      lastName: lastName ?? this.lastName,
+      role: role ?? this.role,
+      username: username ?? this.username,
+      password: password ?? this.password,
+      billing: billing ?? this.billing,
+      shipping: shipping ?? this.shipping,
+      isPayingCustomer: isPayingCustomer ?? this.isPayingCustomer,
+      avatarUrl: avatarUrl ?? this.avatarUrl,
+      metaData: metaData ?? this.metaData,
+      links: links ?? this.links,
+    );
+  }
 }
 
 class WooCustomerMetaData {
